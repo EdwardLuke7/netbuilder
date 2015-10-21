@@ -1,0 +1,6 @@
+
+public class orderLine {
+	private customerOrderID;
+	private productID;
+	private quantity;
+}

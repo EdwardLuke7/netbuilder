@@ -1,0 +1,8 @@
+
+public class Inventory {
+	private static Product[] products;
+	private static int iterator = 0;
+	private  
+	
+	public 
+}

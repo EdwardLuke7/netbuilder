@@ -1,0 +1,12 @@
+
+public class orderLine {
+	private int customerOrderID;
+	private int productID;
+	private int quantity;
+	
+	public orderLine(int customerOrderID, int productID, int quantity) {
+		this.customerOrderID = customerOrderID;
+		this.productID = productID;
+		this.quantity = quantity;
+	}
+}

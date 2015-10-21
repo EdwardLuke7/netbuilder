@@ -1,0 +1,19 @@
+import java.util.ArrayList;
+
+public class CustomerOrder extends Order {
+	private enum Status { PLACED, PICKED, PACKED, DISPATCHED };
+	private Status status = Status.PLACED;
+	
+	public CustomerOrder(Status status) {
+		Order();
+		this.status = status;
+	}
+	
+	public Status getStatus() {
+		return status;
+	}
+	
+	public void setStatus (Status status) {
+		this.status = status;
+	}
+}

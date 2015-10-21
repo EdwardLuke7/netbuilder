@@ -1,0 +1,49 @@
+import java.util.ArrayList;
+
+public class Order {
+	private final int ID;
+	ArrayList<orderLine> orderLines = new ArrayList<orderLine>();
+	private boolean checkout = false;
+	private enum Status { PLACED, PICKED, PACKED, DISPATCHED };
+	private Status status = Status.PLACED;
+	
+	public Order(int ID, ArrayList<orderLine> orderLines, boolean checkout, Status status) {
+		this.ID = ID;
+		this.orderLines = orderLines;
+		this.checkout = checkout;
+		this.status = status;
+	}
+	
+	public String toString() {
+		//TODO Implement toString method
+		String str = "";
+		return str;
+	}
+	
+	public int getID() {
+		return ID;
+	}
+	
+	public Status getStatus() {
+		return status;
+	}
+	
+	public void setStatus (Status status) {
+		this.status = status;
+	}
+	
+	public boolean getCheckout() {
+		return checkout;
+	}
+	
+	public void checkoutToggle() {
+		if (checkout)
+			checkout = false;
+		else
+			checkout = true;		
+	}
+	
+	public void sortByLocation() {
+		//TODO Implement nearest-neighbour to order the list in picking order
+	}
+}

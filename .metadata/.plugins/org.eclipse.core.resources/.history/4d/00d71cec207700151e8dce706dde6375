@@ -1,0 +1,6 @@
+public class WOTS {
+	public static void main(String[] args) {
+		Product gnome = new Product(0, "one direction", 10, 5, 5, null);
+		System.out.println(gnome.getName());
+	}
+}
