@@ -4,6 +4,7 @@ public abstract class Order {
 	protected final int ID;
 	protected ArrayList<OrderLine> orderLines = new ArrayList<OrderLine>();
 	protected boolean checkout = false;
+	public String DBTable = null;
 	
 	public Order(int ID, ArrayList<OrderLine> orderLines, boolean checkout) {
 		this.ID = ID;
@@ -40,4 +41,5 @@ public abstract class Order {
 	public void sortByLocation() {
 		//TODO Implement nearest-neighbour to order the list in picking order
 	}
+	
 }
