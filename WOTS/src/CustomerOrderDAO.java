@@ -1,9 +1,7 @@
 import java.util.ArrayList;
 
 public interface CustomerOrderDAO {
-	public void save(CustomerOrder order);
+//	public void create(CustomerOrder order);
 	public void update(CustomerOrder order);
-	public CustomerOrder fetchByID(int ID);
-	public void delete(CustomerOrder order);
 	public ArrayList<CustomerOrder> fetchAll();
 }

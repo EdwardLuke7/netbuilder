@@ -1,26 +1,38 @@
 import java.util.ArrayList;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class JDBCCustomerOrderDAO implements CustomerOrderDAO {
-	public void save(CustomerOrder order) {
-		JDBCDatabaseManager.update("INSERT INTO customer_orders (status, checked_out) VALUES (" + order.getStatus() + " " + order.getCheckout() + ")");
-	}
-	
+//	public void create(CustomerOrder order) {
+//		System.out.println("SQL: " + "INSERT INTO customer_orders (status, checked_out) VALUES (" + order.getStatus() + ", " + order.getCheckout() + ")");
+//		JDBCDatabaseManager.update("INSERT INTO customer_orders (status, checked_out) VALUES (" + order.getStatus() + ", " + order.getCheckout() + ")");
+//	}
+
 	public void update(CustomerOrder order) {
-		//TODO Save changes method
-	}
-	
-	public CustomerOrder fetchByID(int ID) {
-		CustomerOrder order = null;
-		
-		return order;
-	}
-	
-	public void delete(CustomerOrder order) {
-		
+		JDBCDatabaseManager.update("UPDATE customer_orders SET status=" + order.getStatus() + ",checked_out=" + order.getCheckout() + " WHERE (id=" + order.getID() + ")");
 	}
 	
 	public ArrayList<CustomerOrder> fetchAll() {
-		ArrayList<CustomerOrder> orders = null;
+		ArrayList<CustomerOrder> orders = new ArrayList<CustomerOrder>();
+		
+		ResultSet results = JDBCDatabaseManager.query("SELECT * FROM customer_orders");
+		
+		try {
+			while (results.next()) {
+				int id = results.getInt("id");
+				int status = results.getInt("status");
+				boolean checkout = results.getBoolean("checked_out");
+				CustomerOrder order = new CustomerOrder(id, null, checkout, status);
+				
+				orders.add(order);
+			}
+		} 
+		catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return orders;
 	}

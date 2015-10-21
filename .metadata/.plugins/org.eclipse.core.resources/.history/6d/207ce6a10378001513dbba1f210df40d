@@ -1,0 +1,22 @@
+import java.util.ArrayList;
+
+public class JDBCCustomerOrderDAO implements CustomerOrderDAO {
+	public void create(CustomerOrder order) {
+		System.out.println("SQL: " + "INSERT INTO customer_orders (status, checked_out) VALUES (" + order.getStatus() + ", " + order.getCheckout() + ")");
+		JDBCDatabaseManager.update("INSERT INTO customer_orders (status, checked_out) VALUES (" + order.getStatus() + ", " + order.getCheckout() + ")");
+	}
+	
+	public void updateStatus(CustomerOrder order, int status) {
+		//TODO implement it
+	}
+	
+	public void updateCheckout(CustomerOrder order, boolean checkout) {
+		//TODO implement it
+	}
+	
+	public ArrayList<CustomerOrder> fetchAll() {
+		ArrayList<CustomerOrder> orders = null;
+		//TODO implement it
+		return orders;
+	}
+}

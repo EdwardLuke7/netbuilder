@@ -1,0 +1,8 @@
+import java.util.ArrayList;
+
+public interface CustomerOrderDAO {
+//	public void create(CustomerOrder order);
+	public void updateStatus(CustomerOrder order, int status);
+	public void updateCheckout(CustomerOrder order, boolean checkout);
+	public ArrayList<CustomerOrder> fetchAll();
+}

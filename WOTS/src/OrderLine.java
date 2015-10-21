@@ -1,4 +1,3 @@
-
 public class OrderLine {
 	private int customerOrderID;
 	private int productID;

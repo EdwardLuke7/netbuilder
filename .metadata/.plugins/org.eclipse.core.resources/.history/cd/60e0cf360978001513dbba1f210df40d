@@ -1,0 +1,22 @@
+import java.util.ArrayList;
+import java.sql.ResultSet;
+
+public class JDBCCustomerOrderDAO implements CustomerOrderDAO {
+//	public void create(CustomerOrder order) {
+//		System.out.println("SQL: " + "INSERT INTO customer_orders (status, checked_out) VALUES (" + order.getStatus() + ", " + order.getCheckout() + ")");
+//		JDBCDatabaseManager.update("INSERT INTO customer_orders (status, checked_out) VALUES (" + order.getStatus() + ", " + order.getCheckout() + ")");
+//	}
+
+	public void update(CustomerOrder order) {
+		JDBCDatabaseManager.update("UPDATE customer_orders SET status=" + order.getStatus() + ",checked_out=" + order.getCheckout() + " WHERE (id=" + order.getID() + ")");
+	}
+	
+	public ArrayList<CustomerOrder> fetchAll() {
+		ArrayList<CustomerOrder> orders = null;
+		ResultSet results = null;
+		
+		results = JDBCDatabaseManager.query("SELECT * FROM customer_order");
+		
+		return orders;
+	}
+}

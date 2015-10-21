@@ -4,17 +4,36 @@ public class CustomerOrder extends Order {
 	private enum Status { PENDING, PICKED, PACKED, DISPATCHED };
 	private Status status = Status.PENDING;
 		
-	public CustomerOrder(int ID, ArrayList<OrderLine> orderLines, boolean checkout, Status status) {
+	public CustomerOrder(int ID, ArrayList<OrderLine> orderLines, boolean checkout, int status) {
 		super(ID, orderLines, checkout);
-		this.status = status;
+		this.setStatus(status);
 		this.DBTable = "customer_order";
 	}
 	
-	public Status getStatus() {
-		return status;
+	public String toString() {
+		return String.valueOf(ID) + "\t" + status + "\t" + String.valueOf(checkout); 
 	}
 	
-	public void setStatus (Status status) {
-		this.status = status;
+	public int getStatus() {
+		return status.ordinal();
+	}
+	
+	public void setStatus (int status) {
+		switch (status) {
+			case 0:
+				this.status = Status.PENDING;
+				break;
+			case 1:
+				this.status = Status.PICKED;
+				break;
+			case 2:
+				this.status = Status.PACKED;
+				break;
+			case 3:
+				this.status = Status.DISPATCHED;
+				break;
+			default:
+				this.status = Status.PENDING;
+		}
 	}
 }

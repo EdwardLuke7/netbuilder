@@ -1,4 +1,8 @@
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.Statement;
+import java.sql.SQLException;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 
 public class JDBCDatabaseManager {
 	private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -62,7 +66,7 @@ public class JDBCDatabaseManager {
 			e.printStackTrace();
 		}
 		
-		closeConn(conn, stmt);
+		//closeConn(conn, stmt);
 		return results;
 	}
 	
