@@ -1,0 +1,11 @@
+import java.sql.ResultSet;
+
+public class JDBCProductDAO extends JDBCDAO implements ProductDAO {
+	public Product fetch() {
+		ResultSet result = JDBCDAO.query("");
+		
+		Product product = new Product(0, null, 0, false, null);
+		
+		return product;
+	}
+}

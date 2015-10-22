@@ -18,6 +18,10 @@ public class CustomerOrder extends Order {
 		return status.ordinal();
 	}
 	
+	public String getStatusString() {
+		return String.valueOf(status);
+	}
+	
 	public void setStatus (int status) {
 		switch (status) {
 			case 0:

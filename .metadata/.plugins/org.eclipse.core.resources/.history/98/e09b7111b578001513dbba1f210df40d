@@ -1,0 +1,41 @@
+public class DAOFactory {
+	public CustomerOrderDAO getCODAO() {
+		return this.getCODAO("mysql");
+	}
+
+	public OrderLineDAO getOLDAO() {
+		return this.getOLDAO("mysql");
+	}
+	
+	public CustomerOrderDAO getCODAO(String databaseType) {
+		if (databaseType == "mysql") {
+			System.out.println("Factory instancing JDBCCustomerOrderDAO.");
+			return new JDBCCustomerOrderDAO();
+		}
+		else if (databaseType == "file") {
+			System.out.println("Factory instancing FileCustomerOrderDAO.");
+			//TODO return new FileCustomerOrderDAO();
+			return null;
+		}
+		else {
+			System.out.println("CustomerOrderDAOFactory error.");
+			return null;
+		}
+	}
+	
+	public OrderLineDAO getOLDAO(String databaseType) {
+		if (databaseType == "mysql") {
+			System.out.println("Factory instancing JDBCCustomerOrderDAO.");
+			return new JDBCOrderLineDAO();
+		}
+		else if (databaseType == "file") {
+			System.out.println("Factory instancing FileOrderLinesDAO.");
+			//TODO return new FileCustomerOrderDAO();
+			return null;
+		}
+		else {
+			System.out.println("CustomerOrderDAOFactory error.");
+			return null;
+		}
+	}
+}

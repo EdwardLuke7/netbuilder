@@ -3,9 +3,9 @@ public class Product {
 	private String name;
 	private int stock;
 	private boolean porouswear;
-	private int[] location;
+	private float[] location;
 	
-	public Product(int ID, String name, int stock, boolean porouswear, int[] location) {
+	public Product(int ID, String name, int stock, boolean porouswear, float[] location) {
 		this.ID = ID;
 		this.name = name;
 		this.stock = stock;
@@ -26,11 +26,11 @@ public class Product {
 		this.name = name;
 	}
 
-	public int[] getLocation() {
+	public float[] getLocation() {
 		return location;
 	}
 
-	public void setLocation(int[] location) {
+	public void setLocation(float[] location) {
 		this.location = location;
 	}
 

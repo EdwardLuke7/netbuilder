@@ -2,3 +2,9 @@
 1445358828680	Delete element
 1445430357463	Rename type 'OrderDAO'
 1445431970675	Rename type 'DatabaseManager'
+1445506841361	Delete element
+1445511320452	Rename type 'CustomerOrderDAOFactory'
+1445521699669	Rename type 'productDAO'
+1445523586523	Rename type 'JDBCProductDAO'
+1445524020012	Rename type 'JDBCDAO'
+1445527148297	Rename type 'JDBCDatabaseManager'
