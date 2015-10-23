@@ -27,6 +27,7 @@ public class PurchaseOrder extends Order {
 	}
 	
 	public void setStatus (int status) {
+		System.out.println(status);
 		switch (status) {
 			case 0:
 				this.status = Status.PENDING;
