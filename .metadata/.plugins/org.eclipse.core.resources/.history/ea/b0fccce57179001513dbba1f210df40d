@@ -1,0 +1,14 @@
+import java.util.ArrayList;
+
+public class PurchaseOrder extends Order {
+	private enum Status { PENDING, DELIVERED, COMPLETE };
+	private Status status = Status.PENDING;
+	this.DBTable = ""; 
+	
+	public PurchaseOrder(int ID, ArrayList<OrderLine> orderLines, boolean checkout, int status) {
+		super(ID, orderLines, checkout);
+		this.status = status;
+		this.DBTable = "purchase_order";
+	}
+	
+}

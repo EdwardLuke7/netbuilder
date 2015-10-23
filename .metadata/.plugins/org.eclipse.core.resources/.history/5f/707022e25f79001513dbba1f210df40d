@@ -1,0 +1,113 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class WOTS {
+	public static void main(String[] args) {		
+		//ResultSet results = JDBCDatabaseManager.query("SELECT * FROM customer_orders");
+		//JDBCDatabaseManager.update("INSERT INTO customer_orders (status, checked_out) VALUES (1, 1)");
+		Scanner input = new Scanner(System.in);
+		System.out.println("Warehouse Operations Tracking System");
+		System.out.println("Initialising...");
+		
+		DAOFactory DAOFactory = new DAOFactory();
+		CustomerOrderDAO cODAO = DAOFactory.getCODAO("mysql"); 
+		OrderLineDAO oLDAO = DAOFactory.getOLDAO("mysql");
+		ProductDAO pDAO = DAOFactory.getPDAO("mysql");
+		
+		boolean run = true;
+		
+		while (run) {
+			System.out.println("\n--Main Menu--\nSelect an option:");
+			System.out.println("1. Customer Orders");
+			System.out.println("2. Purchase Orders");
+			System.out.println("3. Inventory");
+			System.out.println("4. Quit");
+			
+			switch (input.next().charAt(0)) {
+				case '1':
+					ArrayList<CustomerOrder> customerOrders = new ArrayList<CustomerOrder>();
+					customerOrders = cODAO.fetchAll();
+					
+					System.out.println("\n--Customer Orders--");
+					System.out.println("ID\tSTATUS\tCHECKOUT");
+					
+					for (CustomerOrder order : customerOrders) {
+						System.out.println(order);
+					}
+					
+					System.out.println("Choose an order: ");
+					int orderNum = input.nextInt();
+					
+					CustomerOrder currentOrder = cODAO.fetch(orderNum);
+					
+					currentOrder.setOrderLines(oLDAO.fetchAll(currentOrder));
+					//System.out.println(currentOrder.getOrderLines());
+					
+					ArrayList<OrderLine> orderLines = currentOrder.getOrderLines();
+					
+					System.out.println("\n--Order " + currentOrder.getID() + "--\n" + "Status: " + currentOrder.getStatusString() + "\nChecked Out: " + currentOrder.getCheckout() + "\n\nQUANTITY\tID\tNAME\tPOROUS");
+					for (OrderLine line : orderLines) {
+						Product product = pDAO.fetch(line.getProductID());
+						System.out.print(line.getQuantity() + "\t" + product.getID());
+					}
+					System.out.println("-----------");
+					
+					System.out.println("Select an option:");
+					System.out.println("1. Checkout/return");
+					System.out.println("2. Update status");
+					System.out.println("3. Return to Main Menu");
+					switch (input.next().charAt(0)) {
+						case '1':
+							currentOrder.checkoutToggle();
+							cODAO.update(currentOrder);
+							break;
+						case '2':
+							System.out.println("\n--Update Status--\nSelect an option:");
+							System.out.println("1. PENDING");
+							System.out.println("2. PICKED");
+							System.out.println("3. PACKED");
+							System.out.println("4. DISPATCHED");
+							System.out.println("5. Return to Main Menu");
+							
+							int status = input.nextInt() - 1;
+							if (status > 0 && status < 6) {
+								currentOrder.setStatus(status);
+								cODAO.update(currentOrder);
+							}
+							else {
+								System.out.println("Invalid status!");
+							}
+							break;
+						default:
+							break;
+					}
+					
+					break;
+				case '2':
+					System.out.println("Puchase Orders mode coming Soon");
+					break;
+				case '3':
+					System.out.println("\n--Inventory--");
+					System.out.println("ID\tNAME\tSTOCK\tPOROUS\t");
+					
+					ArrayList<Product> inventory = pDAO.fetchAll();
+					
+					for (Product product : inventory) {
+						System.out.println(product);
+					}
+					break;
+				default:
+					run = false;
+					System.out.println("Exiting...");
+					break;
+			}
+		}
+		
+		System.exit(0);
+		
+	}
+	
+	public static void listCustomerOrders(CustomerOrderDAO dao) {
+		
+	}
+}

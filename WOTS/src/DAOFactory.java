@@ -1,6 +1,16 @@
+
+
 public class DAOFactory {
 	public CustomerOrderDAO getCODAO() {
 		return this.getCODAO("mysql");
+	}
+	
+	public PurchaseOrderDAO getPODAO() {
+		return this.getPODAO("mysql");
+	}
+	
+	public ProductDAO getPDAO() {
+		return this.getPDAO("mysql");
 	}
 
 	public OrderLineDAO getOLDAO() {
@@ -19,6 +29,22 @@ public class DAOFactory {
 		}
 		else {
 			System.out.println("Product DAOFactory error.");
+			return null;
+		}
+	}
+	
+	public PurchaseOrderDAO getPODAO(String databaseType) {
+		if (databaseType == "mysql") {
+			System.out.println("Purchase Orders source: MySQL DB");
+			return new JDBCPurchaseOrderDAO();
+		}
+		else if (databaseType == "file") {
+			System.out.println("Purchase Orders source: file");
+			//TODO
+			return null;
+		}
+		else {
+			System.out.println("PurchaseOrder DAOFactory error.");
 			return null;
 		}
 	}

@@ -6,12 +6,16 @@ public class CustomerOrder extends Order {
 		
 	public CustomerOrder(int ID, ArrayList<OrderLine> orderLines, boolean checkout, int status) {
 		super(ID, orderLines, checkout);
-		this.setStatus(status);
 		this.DBTable = "customer_order";
+		this.setStatus(status);
 	}
 	
 	public String toString() {
-		return String.valueOf(ID) + "\t" + status + "\t" + String.valueOf(checkout); 
+		String shortStatus = String.valueOf(status);
+		if (shortStatus.length() > 7) {
+			shortStatus = shortStatus.substring(0,7);
+		}
+		return String.valueOf(ID) + "\t" + shortStatus + "\t" + String.valueOf(checkout); 
 	}
 	
 	public int getStatus() {

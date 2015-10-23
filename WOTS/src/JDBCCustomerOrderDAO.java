@@ -8,6 +8,7 @@ public class JDBCCustomerOrderDAO extends JDBCDAO implements CustomerOrderDAO {
 	}
 
 	public void update(CustomerOrder order) {
+		System.out.println("UPDATE customer_orders SET status=" + order.getStatus() + ",checked_out=" + order.getCheckout() + " WHERE (id=" + order.getID() + ")");
 		update("UPDATE customer_orders SET status=" + order.getStatus() + ",checked_out=" + order.getCheckout() + " WHERE (id=" + order.getID() + ")");
 	}
 	
@@ -42,7 +43,7 @@ public class JDBCCustomerOrderDAO extends JDBCDAO implements CustomerOrderDAO {
 				int status = results.getInt("status");
 				boolean checkout = results.getBoolean("checked_out");
 				CustomerOrder order = new CustomerOrder(id, null, checkout, status);
-				
+				System.out.println(order.getStatus());
 				orders.add(order);
 			}
 		} 
